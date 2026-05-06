@@ -109,3 +109,84 @@ body {
   align-items: center;
   cursor: pointer;
 }
+
+.search-btn:hover {
+  background-color: #3efef8;
+  box-shadow: 0 0 20px rgba(62, 254, 248, 0.6);
+}
+
+/* Jumbo con video */
+
+.jumbo-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--bordo-rosato-chiaro);
+  margin-bottom: 40px;
+}
+
+.jumbo-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  /* queste righe mi sono servite per ingrandire il video e tagliare il logo in alto a destra */
+  transform: scale(1.15);
+  transform-origin: center;
+}
+
+/* sfondo nero sul video per far risaltare la scritta  */
+.jumbo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+}
+
+.jumbo-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+
+.jumbo-title {
+  color: var(--testo-bordeaux);
+  font-size: 52px;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  text-shadow: 2px 4px 13px rgba(255, 255, 255, 0.94);
+}
+
+.jumbo-subtitle {
+  color: var(--bg-bianco);
+  font-size: 20px;
+  margin-bottom: 40px;
+  text-shadow: 2px 4px 13px rgba(84, 25, 38, 0.94);
+}
+
+.jumbo-btn {
+  background-color: var(--brand-verde-acqua);
+  color: var(--bg-bianco);
+  border: none;
+  padding: 15px 45px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.jumbo-btn:hover {
+  background-color: #3efef8;
+  color: var(--testo-bordeaux);
+  box-shadow: 0 0 20px rgba(62, 254, 248, 0.6);
+}

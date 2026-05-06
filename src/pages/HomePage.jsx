@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Jumbo from "../components/Jumbo";
 
 export default function HomePage() {
     const [makeupList, setMakeupList] = useState([])
@@ -12,6 +13,10 @@ export default function HomePage() {
 
     return (
         <div>
+
+            <Jumbo />
+
+
             <h1>💄Catalogo trucchi</h1>
             {makeupList.map((prodotto) => {
                 return (
@@ -22,5 +27,5 @@ export default function HomePage() {
                 )
             })}
         </div>
-    )
+    );
 }

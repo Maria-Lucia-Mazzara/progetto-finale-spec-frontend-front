@@ -25,7 +25,7 @@ export default function Navbar() {
 
                 <div className="search-input-container">
                     <input type="text" placeholder="Cerca i tuoi trucchi..." />
-                    <button className="search-btn"><MagnifyingGlassIcon size={32} color="#dce5ea" /></button>
+                    <button className="search-btn"><MagnifyingGlassIcon size={32} color="#541926" /></button>
                 </div>
             </div>
 
