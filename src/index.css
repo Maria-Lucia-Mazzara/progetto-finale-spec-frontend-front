@@ -3,18 +3,109 @@ body {
   padding: 0;
 }
 
+:root {
+  /* colore sfondo */
+  --bg-rosa-panna: #fdf2f0;
+  --bg-bianco: #ffffff;
+  --bg-menu-verde: #c6ebe7;
+
+  /* colore sfondo */
+  --testo-bordeaux: #541926;
+  --testo-paragrafo: #5c4347;
+  --testo-placeholder: #a88b8b;
+
+  /* colori per bottoni */
+  --brand-verde-acqua: #18b6b1;
+  --brand-oro-rosa: #c28a80;
+
+  /* colori delle linee */
+  --bordo-rosato-scuro: #d2b3ae;
+  --bordo-rosato-chiaro: #ebd4d0;
+
+}
+
 /* navbar */
 
 .navbar-container {
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border-bottom: 2px solid #ccc;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: var(--bg-rosa-panna);
+  border-bottom: 1px solid var(--bordo-rosato-chiaro);
+  font-family: sans-serif;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 35px;
 }
 
 .navbar-link {
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
+  color: var(--testo-bordeaux);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding-bottom: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.navbar-link:hover {
+  border-bottom: 2px solid var(--brand-verde-acqua);
+}
+
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-icon {
+  font-size: 24px;
+  color: var(--brand-oro-rosa);
+  cursor: pointer;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-bianco);
+  border: 1px solid var(--bordo-rosato-scuro);
+  border-radius: 30px;
+  padding: 3px 4px 3px 15px;
+  width: 250px;
+}
+
+.search-input-container input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  color: var(--testo-paragrafo);
+  font-size: 14px;
+}
+
+.search-input-container input::placeholder {
+  color: var(--testo-placeholder);
+}
+
+.search-btn {
+  background-color: var(--brand-verde-acqua);
+  color: var(--bg-bianco);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
