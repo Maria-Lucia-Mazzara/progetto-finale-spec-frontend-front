@@ -1,6 +1,4 @@
-
-
-
+import { Link } from "react-router-dom";
 import videoSfondo from "../assets/video/video.mp4";
 
 export default function Jumbo() {
@@ -17,7 +15,9 @@ export default function Jumbo() {
                 <p className="jumbo-subtitle">
                     Ciò che mancava al tuo stile, finalmente a portata di clic.
                 </p>
-                <button className="jumbo-btn">SHOP NOW</button>
+                <Link to="/prodotti" className="jumbo-btn">
+                    SHOP NOW
+                </Link>
             </div>
         </div>
     );
