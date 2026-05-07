@@ -320,3 +320,40 @@ body {
   color: var(--testo-bordeaux);
   box-shadow: 0 0 20px rgba(62, 254, 248, 0.6);
 }
+
+/* pagina dei prodotti */
+/* --- CARD NESSUN RISULTATO --- */
+.no-results-msg {
+  width: 100%;
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 50px 30px;
+  background-color: #ffffff;
+  border: 2px dashed #d2b3ae;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.no-results-img {
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.no-results-msg-text {
+  font-size: 22px;
+  color: var(--testo-bordeaux);
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.no-results-msg span {
+  font-size: 15px;
+  color: #888888;
+  font-style: italic;
+  text-align: center;
+}
