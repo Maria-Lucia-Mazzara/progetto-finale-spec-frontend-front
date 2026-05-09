@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import logoMusa from "../assets/logo/logo.png";
-import { ShoppingCartIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon, HeartIcon } from "@phosphor-icons/react";
 import { useState } from "react";
+import { usePreferiti } from "../context/PreferitiContext";
 
 
 export default function Navbar() {
     const [cerca, setCerca] = useState("");
     const navigate = useNavigate();
+    const { preferiti } = usePreferiti();
 
     const gestisciRicerca = (e) => {
         e.preventDefault();
@@ -21,20 +23,29 @@ export default function Navbar() {
         <nav className="navbar-container">
 
             <div className="navbar-logo">
-                <img src={logoMusa} alt="Logo Musa Cosmetics" className="logo-img" />
+                <Link to="/">
+                    <img src={logoMusa} alt="Logo Musa Cosmetics" className="logo-img" />
+                </Link>
             </div>
 
 
             <div className="navbar-links">
                 <Link to="/" className="navbar-link">HOME</Link>
                 <Link to="/prodotti" className="navbar-link">PRODOTTI</Link>
-                <span className="navbar-link">NOVITÀ</span>
-                <span className="navbar-link">BLOG</span>
             </div>
 
 
             <div className="navbar-search">
-                <span className="cart-icon"><ShoppingCartIcon size={32} color="#541926" /></span>
+
+
+                <Link to="/preferiti" className="cart-icon preferiti-icon-wrapper">
+                    <HeartIcon size={32} color="#541926" />
+                    {preferiti.length > 0 && (
+                        <span className="badge-preferiti">
+                            {preferiti.length}
+                        </span>
+                    )}
+                </Link>
 
                 <form className="search-input-container" onSubmit={gestisciRicerca}>
                     <input
@@ -51,4 +62,5 @@ export default function Navbar() {
 
         </nav>
     )
+
 }

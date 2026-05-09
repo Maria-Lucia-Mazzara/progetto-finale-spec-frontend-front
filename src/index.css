@@ -646,3 +646,97 @@ body {
   color: var(--testo-bordeaux);
   background-color: #fdf8f7;
 }
+
+/* cuore preferiti */
+.preferiti-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none !important;
+}
+
+.badge-preferiti {
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  background-color: var(--brand-verde-acqua, #00bfa5);
+  color: white !important;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none !important;
+  border: 2px solid #fdf8f7;
+}
+
+/* testi pagina preferiti */
+.prodotti-page-container {
+  text-align: center;
+}
+
+.empty-preferiti-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* cuore delle card */
+.card-heart-quick {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.card-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.card-btn-rimuovi {
+  background-color: transparent;
+  color: #541926;
+  border: 1px solid #541926;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  width: 160px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.card-btn-rimuovi:hover {
+  background-color: #541926;
+  color: white;
+}
+
+.card-btn {
+  width: 160px;
+  text-align: center;
+  display: inline-block;
+}

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { HouseIcon } from "@phosphor-icons/react";
+import { usePreferiti } from "../context/PreferitiContext";
 
 export default function DettaglioProdotto() {
     const { id } = useParams();
     const [prodotto, setProdotto] = useState(null);
     const [loading, setLoading] = useState(true);
+    const { preferiti, togglePreferito } = usePreferiti();
 
     useEffect(() => {
         if (!id || id === 'undefined') {
@@ -52,11 +54,25 @@ export default function DettaglioProdotto() {
         );
     }
 
+
+    const isPreferito = preferiti.some(p => String(p.id) === String(id));
+
+    const gestisciClickPreferito = () => {
+        togglePreferito(prodotto); // Aggiunge o toglie dal context
+
+        // Mostriamo il messaggino giusto
+        if (!isPreferito) {
+            alert("💖 Aggiunto ai tuoi preferiti!");
+        } else {
+            alert("💔 Rimosso dai preferiti!");
+        }
+    };
+
     return (
         <div className="dettaglio-page-container">
             <div className="dettaglio-grid">
 
-
+                {/* COLONNA FOTO */}
                 <div className="dettaglio-left">
                     <div className="dettaglio-foto-wrapper">
                         <img
@@ -67,7 +83,7 @@ export default function DettaglioProdotto() {
                     </div>
                 </div>
 
-
+                {/* COLONNA TESTI */}
                 <div className="dettaglio-right">
                     <h1 className="dettaglio-titolo-grande">{prodotto.title}</h1>
                     <p className="dettaglio-sottotitolo">{prodotto.brand} | {prodotto.category}</p>
@@ -80,11 +96,9 @@ export default function DettaglioProdotto() {
                         <span className="rating-text">({prodotto.rating}/5)</span>
                     </div>
 
-
                     <p className="dettaglio-prezzo-grande">
                         {Number(prodotto.price).toFixed(2).replace('.', ',')} €
                     </p>
-
 
                     <div className="dettaglio-meta-grid">
                         <span className="meta-label">Tipo di Pelle:</span>
@@ -94,7 +108,7 @@ export default function DettaglioProdotto() {
                     <h3 className="dettaglio-sezione-titolo">Descrizione</h3>
                     <p className="dettaglio-descrizione-testo">{prodotto.description}</p>
 
-
+                    {/* PRIMO GRUPPO: Navigazione */}
                     <div className="dettaglio-bottoni-primari">
                         <Link to="/prodotti" className="btn-torna-catalogo">TORNA AL CATALOGO</Link>
 
@@ -103,11 +117,18 @@ export default function DettaglioProdotto() {
                         </Link>
                     </div>
 
-
+                    {/* SECONDO GRUPPO: Azioni */}
                     <div className="dettaglio-bottoni-secondari">
-                        <button className="btn-preferito">
-                            <span className="cuore-icona">♡</span> Preferito
+
+                        {/* 4. IL BOTTONE PREFERITO COLLEGATO ALLA LOGICA */}
+                        <button
+                            className={`btn-preferito ${isPreferito ? 'salvato' : ''}`}
+                            onClick={gestisciClickPreferito}
+                        >
+                            <span className="cuore-icona">{isPreferito ? '♥' : '♡'}</span>
+                            {isPreferito ? 'Salvato' : 'Preferito'}
                         </button>
+
                         <button className="btn-comparatore">Aggiungi al Comparatore</button>
                     </div>
                 </div>
