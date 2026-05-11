@@ -1,21 +1,29 @@
 import { Link } from "react-router-dom";
 import { usePreferiti } from "../context/PreferitiContext";
+import { useComparatore } from "../context/ComparatoreContext";
+import { ArrowsCounterClockwise } from "@phosphor-icons/react";
 
 export default function ProductCard({ prodotto, isPreferitiPage = false }) {
 
     const { preferiti, togglePreferito } = usePreferiti();
+    const { comparatore, toggleComparatore } = useComparatore();
     const isPreferito = preferiti.some(p => String(p.id) === String(prodotto.id));
-
+    const isInComparatore = comparatore.some(p => String(p.id) === String(prodotto.id));
 
     const handlePreferitoClick = (e) => {
         e.preventDefault();
         togglePreferito(prodotto);
     };
 
+    const handleComparatoreClick = (e) => {
+        e.preventDefault();
+        toggleComparatore(prodotto);
+    };
+
     return (
         <div className="product-card" style={{ position: 'relative' }}>
 
-            {/* Cuoricino veloce in alto a destra */}
+
             {!isPreferitiPage && (
                 <button
                     className={`card-heart-quick ${isPreferito ? 'salvato' : ''}`}
@@ -24,6 +32,15 @@ export default function ProductCard({ prodotto, isPreferitiPage = false }) {
                     {isPreferito ? '♥' : '♡'}
                 </button>
             )}
+
+
+            <button
+                className={`card-heart-quick ${isInComparatore ? 'salvato' : ''}`}
+                style={{ right: 'auto', left: '35px' }}
+                onClick={handleComparatoreClick}
+            >
+                <ArrowsCounterClockwise size={18} weight={isInComparatore ? "bold" : "regular"} />
+            </button>
 
             {/* Foto cliccabile che porta alla pagina dettaglio prodotto*/}
             <Link to={`/prodotti/${prodotto.id}`}>

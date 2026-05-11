@@ -5,21 +5,26 @@ import ProdottiPage from "./pages/ProdottiPage";
 import DettaglioProdotto from "./pages/DettaglioProdotto";
 import { PreferitiProvider } from "./context/PreferitiContext";
 import PreferitiPage from "./pages/PreferitiPage";
+import { ComparatoreProvider } from "./context/ComparatoreContext";
+import ComparatorePage from "./pages/ComparatorePage";
 
 function App() {
 
 
   return (
     <PreferitiProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/prodotti" element={<ProdottiPage />} />
-          <Route path="/prodotti/:id" element={<DettaglioProdotto />} />
-          <Route path="/preferiti" element={<PreferitiPage />} />
-        </Routes>
-      </BrowserRouter>
+      <ComparatoreProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/prodotti" element={<ProdottiPage />} />
+            <Route path="/prodotti/:id" element={<DettaglioProdotto />} />
+            <Route path="/preferiti" element={<PreferitiPage />} />
+            <Route path="/comparatore" element={<ComparatorePage />} />
+          </Routes>
+        </BrowserRouter>
+      </ComparatoreProvider>
     </PreferitiProvider>
 
   )

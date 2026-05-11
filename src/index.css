@@ -740,3 +740,68 @@ body {
   text-align: center;
   display: inline-block;
 }
+
+
+/* Pagina del comparatore */
+.comparatore-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.comparatore-grid-flex {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.comparatore-card {
+  flex: 1;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--bordo-rosato-scuro);
+  position: relative;
+  text-align: center;
+  max-width: 400px;
+}
+
+.comparatore-card img {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.comparatore-card h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--testo-bordeaux);
+}
+
+.comp-prezzo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--testo-bordeaux);
+  margin: 15px 0;
+}
+
+.btn-rimuovi-x {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--bordo-rosato-scuro);
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.placeholder-card {
+  border: 2px dashed var(--bordo-rosato-scuro);
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--testo-placeholder);
+}

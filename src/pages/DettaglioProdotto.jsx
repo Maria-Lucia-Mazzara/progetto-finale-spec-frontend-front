@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { HouseIcon } from "@phosphor-icons/react";
 import { usePreferiti } from "../context/PreferitiContext";
+import { useComparatore } from "../context/ComparatoreContext";
 
 export default function DettaglioProdotto() {
     const { id } = useParams();
     const [prodotto, setProdotto] = useState(null);
     const [loading, setLoading] = useState(true);
     const { preferiti, togglePreferito } = usePreferiti();
+    const { comparatore, toggleComparatore } = useComparatore();
 
     useEffect(() => {
         if (!id || id === 'undefined') {
@@ -37,6 +39,7 @@ export default function DettaglioProdotto() {
             });
     }, [id]);
 
+    // Schermata di attesa
     if (loading) {
         return (
             <div className="loading-screen">
@@ -45,6 +48,7 @@ export default function DettaglioProdotto() {
         );
     }
 
+    // Schermata di errore
     if (!prodotto) {
         return (
             <div className="error-screen">
@@ -56,11 +60,10 @@ export default function DettaglioProdotto() {
 
 
     const isPreferito = preferiti.some(p => String(p.id) === String(id));
+    const isInComparatore = comparatore.some(p => String(p.id) === String(id));
 
     const gestisciClickPreferito = () => {
-        togglePreferito(prodotto); // Aggiunge o toglie dal context
-
-        // Mostriamo il messaggino giusto
+        togglePreferito(prodotto);
         if (!isPreferito) {
             alert("💖 Aggiunto ai tuoi preferiti!");
         } else {
@@ -108,7 +111,6 @@ export default function DettaglioProdotto() {
                     <h3 className="dettaglio-sezione-titolo">Descrizione</h3>
                     <p className="dettaglio-descrizione-testo">{prodotto.description}</p>
 
-                    {/* PRIMO GRUPPO: Navigazione */}
                     <div className="dettaglio-bottoni-primari">
                         <Link to="/prodotti" className="btn-torna-catalogo">TORNA AL CATALOGO</Link>
 
@@ -117,10 +119,7 @@ export default function DettaglioProdotto() {
                         </Link>
                     </div>
 
-                    {/* SECONDO GRUPPO: Azioni */}
                     <div className="dettaglio-bottoni-secondari">
-
-                        {/* 4. IL BOTTONE PREFERITO COLLEGATO ALLA LOGICA */}
                         <button
                             className={`btn-preferito ${isPreferito ? 'salvato' : ''}`}
                             onClick={gestisciClickPreferito}
@@ -129,7 +128,16 @@ export default function DettaglioProdotto() {
                             {isPreferito ? 'Salvato' : 'Preferito'}
                         </button>
 
-                        <button className="btn-comparatore">Aggiungi al Comparatore</button>
+                        <button
+                            className="btn-comparatore"
+                            onClick={() => toggleComparatore(prodotto)}
+                            style={{
+                                backgroundColor: isInComparatore ? 'var(--testo-bordeaux)' : 'transparent',
+                                color: isInComparatore ? 'white' : 'var(--testo-bordeaux)'
+                            }}
+                        >
+                            {isInComparatore ? "RIMUOVI DAL CONFRONTO" : "AGGIUNGI AL COMPARATORE"}
+                        </button>
                     </div>
                 </div>
 

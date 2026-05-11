@@ -1,14 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import logoMusa from "../assets/logo/logo.png";
-import { MagnifyingGlassIcon, HeartIcon } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon, HeartIcon, ArrowsCounterClockwise } from "@phosphor-icons/react";
 import { useState } from "react";
 import { usePreferiti } from "../context/PreferitiContext";
+import { useComparatore } from "../context/ComparatoreContext";
 
 
 export default function Navbar() {
     const [cerca, setCerca] = useState("");
     const navigate = useNavigate();
     const { preferiti } = usePreferiti();
+    const { comparatore } = useComparatore();
 
     const gestisciRicerca = (e) => {
         e.preventDefault();
@@ -32,11 +34,21 @@ export default function Navbar() {
             <div className="navbar-links">
                 <Link to="/" className="navbar-link">HOME</Link>
                 <Link to="/prodotti" className="navbar-link">PRODOTTI</Link>
+                <Link to="/comparatore" className="navbar-link">CONFRONTA</Link>
             </div>
 
 
             <div className="navbar-search">
 
+
+                <Link to="/comparatore" className="cart-icon preferiti-icon-wrapper" style={{ marginRight: '10px' }}>
+                    <ArrowsCounterClockwise size={32} color="#541926" />
+                    {comparatore.length > 0 && (
+                        <span className="badge-preferiti" style={{ backgroundColor: '#541926' }}>
+                            {comparatore.length}
+                        </span>
+                    )}
+                </Link>
 
                 <Link to="/preferiti" className="cart-icon preferiti-icon-wrapper">
                     <HeartIcon size={32} color="#541926" />
