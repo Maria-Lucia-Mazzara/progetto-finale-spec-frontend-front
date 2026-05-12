@@ -99,6 +99,8 @@ export default function DettaglioProdotto() {
                     </div>
 
                     <p className="dettaglio-prezzo-grande">
+                        {/* getisco il modello del prezzo con due cifre dopo la virgola */}
+                        {/* replace, Trasforma il punto decimale in virgola */}
                         {Number(prodotto.price).toFixed(2).replace('.', ',')} €
                     </p>
 
