@@ -26,7 +26,9 @@ export default function ProductCard({ prodotto, isPreferitiPage = false }) {
     return (
         <div className="product-card" style={{ position: 'relative' }}>
 
+            {/* qua abbiamo una condizione che dice se non siamo nella pagina dei preferiti */}
             {!isPreferitiPage && (
+                // fai vedere il bottone con il cuoricino
                 <button
                     className={`card-heart-quick ${isPreferito ? 'salvato' : ''}`}
                     onClick={handlePreferitoClick}
@@ -35,6 +37,7 @@ export default function ProductCard({ prodotto, isPreferitiPage = false }) {
                 </button>
             )}
 
+            {/* questo è il bottone per aggiungere i prodotti al comparatore  */}
             <button
                 className={`card-heart-quick ${isInComparatore ? 'salvato' : ''}`}
                 style={{ right: 'auto', left: '35px' }}
