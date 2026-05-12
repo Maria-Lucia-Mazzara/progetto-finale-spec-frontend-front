@@ -4,8 +4,10 @@ import Navbar from "./components/Navbar";
 import ProdottiPage from "./pages/ProdottiPage";
 import DettaglioProdotto from "./pages/DettaglioProdotto";
 import { PreferitiProvider } from "./context/PreferitiContext";
+// Importazione del Context globale per la funzione prodotti preferiti
 import PreferitiPage from "./pages/PreferitiPage";
 import { ComparatoreProvider } from "./context/ComparatoreContext";
+// Importazione del Context globale per la funzione del confronta prodotti
 import ComparatorePage from "./pages/ComparatorePage";
 
 function App() {
