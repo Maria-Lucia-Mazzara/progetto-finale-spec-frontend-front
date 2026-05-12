@@ -1,27 +1,36 @@
 import { createContext, useState, useEffect, useContext } from "react";
-const PreferitiContext = createContext();
 
+// 1. Creo la context, dove i dati vanno in memoria
+const PreferitiContext = createContext();
 
 export function PreferitiProvider({ children }) {
 
-    const [preferiti, setPreferiti] = useState(() => {
-        const salvati = localStorage.getItem("preferiti_musa");
-        if (salvati) {
-            return JSON.parse(salvati);
-        }
-        return [];
-    });
+
+    const [preferiti, setPreferiti] = useState([]);
+
 
     useEffect(() => {
-        localStorage.setItem("preferiti_musa", JSON.stringify(preferiti));
+        const salvati = localStorage.getItem("preferiti_musa");
+        if (salvati) {
+            setPreferiti(JSON.parse(salvati));
+        }
+    }, []);
+
+
+    useEffect(() => {
+
+        if (preferiti.length > 0 || localStorage.getItem("preferiti_musa")) {
+            localStorage.setItem("preferiti_musa", JSON.stringify(preferiti));
+        }
     }, [preferiti]);
+
 
     const togglePreferito = (prodotto) => {
         setPreferiti((preferitiAttuali) => {
-            const giaPresente = preferitiAttuali.find((p) => String(p.id) === String(prodotto.id));
-
+            const giaPresente = preferitiAttuali.find((p) => p.id === prodotto.id);
             if (giaPresente) {
-                return preferitiAttuali.filter((p) => String(p.id) !== String(prodotto.id));
+
+                return preferitiAttuali.filter((p) => p.id !== prodotto.id);
             } else {
                 return [...preferitiAttuali, prodotto];
             }
@@ -34,6 +43,7 @@ export function PreferitiProvider({ children }) {
         </PreferitiContext.Provider>
     );
 }
+
 export function usePreferiti() {
     return useContext(PreferitiContext);
 }
