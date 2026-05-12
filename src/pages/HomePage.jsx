@@ -9,7 +9,7 @@ export default function HomePage() {
         fetch(import.meta.env.VITE_API_URL)
             .then(res => res.json())
             .then(data => setMakeupList(data))
-            .catch(error => console.error(error));
+            .catch(error => console.error("Errore nel caricamento:", error));
     }, []);
 
     const topTreProdotti = useMemo(() => {
@@ -31,7 +31,7 @@ export default function HomePage() {
                     if (index === 2) panelClass = "panel-right";
 
                     return (
-                        <div key={prodotto.id || prodotto.title} className={`panel3d ${panelClass}`}>
+                        <div key={prodotto.id} className={`panel3d ${panelClass}`}>
                             <ProductCard prodotto={prodotto} />
                         </div>
                     );

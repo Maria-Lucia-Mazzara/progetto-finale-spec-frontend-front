@@ -7,11 +7,11 @@ export default function ProductCard({ prodotto, isPreferitiPage = false }) {
 
     const { preferiti, togglePreferito } = usePreferiti();
     const { comparatore, toggleComparatore } = useComparatore();
-    const isPreferito = preferiti.some(p => String(p.id) === String(prodotto.id));
-    const isInComparatore = comparatore.some(p => String(p.id) === String(prodotto.id));
+    const isPreferito = preferiti.some(p => p.id === prodotto.id);
+    const isInComparatore = comparatore.some(p => p.id === prodotto.id);
 
     const handlePreferitoClick = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // evita il caricamento della pagina
         togglePreferito(prodotto);
     };
 
@@ -23,7 +23,6 @@ export default function ProductCard({ prodotto, isPreferitiPage = false }) {
     return (
         <div className="product-card" style={{ position: 'relative' }}>
 
-
             {!isPreferitiPage && (
                 <button
                     className={`card-heart-quick ${isPreferito ? 'salvato' : ''}`}
@@ -32,7 +31,6 @@ export default function ProductCard({ prodotto, isPreferitiPage = false }) {
                     {isPreferito ? '♥' : '♡'}
                 </button>
             )}
-
 
             <button
                 className={`card-heart-quick ${isInComparatore ? 'salvato' : ''}`}

@@ -11,13 +11,13 @@ export default function DettaglioProdotto() {
     const { preferiti, togglePreferito } = usePreferiti();
     const { comparatore, toggleComparatore } = useComparatore();
 
+
     useEffect(() => {
         if (!id || id === 'undefined') {
             setLoading(false);
             return;
         }
-
-        const baseUrl = import.meta.env.VITE_API_URL.replace(/\/$/, "");
+        const baseUrl = import.meta.env.VITE_API_URL;
 
         fetch(baseUrl)
             .then((res) => {
@@ -27,7 +27,7 @@ export default function DettaglioProdotto() {
             .then((data) => {
                 let prodottoTrovato = null;
                 if (Array.isArray(data)) {
-                    prodottoTrovato = data.find(item => String(item.id) === String(id));
+                    prodottoTrovato = data.find(item => item.id.toString() === id);
                 }
                 setProdotto(prodottoTrovato || null);
                 setLoading(false);
@@ -39,7 +39,7 @@ export default function DettaglioProdotto() {
             });
     }, [id]);
 
-    // Schermata di attesa
+
     if (loading) {
         return (
             <div className="loading-screen">
@@ -48,7 +48,6 @@ export default function DettaglioProdotto() {
         );
     }
 
-    // Schermata di errore
     if (!prodotto) {
         return (
             <div className="error-screen">
@@ -58,9 +57,8 @@ export default function DettaglioProdotto() {
         );
     }
 
-
-    const isPreferito = preferiti.some(p => String(p.id) === String(id));
-    const isInComparatore = comparatore.some(p => String(p.id) === String(id));
+    const isPreferito = preferiti.some(p => p.id === prodotto.id);
+    const isInComparatore = comparatore.some(p => p.id === prodotto.id);
 
     const gestisciClickPreferito = () => {
         togglePreferito(prodotto);
@@ -92,6 +90,7 @@ export default function DettaglioProdotto() {
                     <p className="dettaglio-sottotitolo">{prodotto.brand} | {prodotto.category}</p>
 
                     <div className="dettaglio-rating-top">
+                        {/* Trucchetto elegante per stampare le stelline dinamicamente */}
                         <span className="stelle">
                             {"★".repeat(Math.round(prodotto.rating || 0))}
                             {"☆".repeat(5 - Math.round(prodotto.rating || 0))}
