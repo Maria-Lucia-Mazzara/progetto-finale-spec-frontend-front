@@ -5,16 +5,19 @@ import { ArrowsCounterClockwise } from "@phosphor-icons/react";
 
 export default function ProductCard({ prodotto, isPreferitiPage = false }) {
 
-    const { preferiti, togglePreferito } = usePreferiti();
-    const { comparatore, toggleComparatore } = useComparatore();
+    const { preferiti, togglePreferito } = usePreferiti();//invoco la context dei preferiti
+    const { comparatore, toggleComparatore } = useComparatore();//invoco la context del comparatore
+    //verifico che c'è almeno solo un elemento che accetta la condizione
     const isPreferito = preferiti.some(p => p.id === prodotto.id);
     const isInComparatore = comparatore.some(p => p.id === prodotto.id);
 
+    // funzione per il clic del bottone preferito
     const handlePreferitoClick = (e) => {
         e.preventDefault(); // evita il caricamento della pagina
         togglePreferito(prodotto);
     };
 
+    // funzione per il clic del bottone comparatore
     const handleComparatoreClick = (e) => {
         e.preventDefault();
         toggleComparatore(prodotto);

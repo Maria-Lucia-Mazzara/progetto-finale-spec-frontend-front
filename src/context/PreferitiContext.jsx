@@ -6,19 +6,15 @@ const PreferitiContext = createContext();
 export function PreferitiProvider({ children }) {
 
 
-    const [preferiti, setPreferiti] = useState([]);
-
-
-    useEffect(() => {
-        // getItem prende gli elementi in memoria
+    const [preferiti, setPreferiti] = useState(() => {
+        // getItem prende gli elementi in memoria. 
         const salvati = localStorage.getItem("preferiti_musa");
         if (salvati) {
             // condizione se ci sono oggetti in memoria, prendili trasformali in oggetti js per leggerli in pagina 
-            setPreferiti(JSON.parse(salvati));
+            return JSON.parse(salvati);
         }
-        // questo significa fallo solo quando apro la pagina
-    }, []);
-
+        return [];
+    });
 
     useEffect(() => {
         // controlla se la pagina preferiti è vuota o se sono presenti preferiti 
@@ -50,6 +46,7 @@ export function PreferitiProvider({ children }) {
         </PreferitiContext.Provider>
     );
 }
+
 // Custom Hook per permettere ai componenti di accedere facilmente ai dati globali
 export function usePreferiti() {
     return useContext(PreferitiContext);
